@@ -1,0 +1,11 @@
+<div class="row center">
+    <div class="col-12 inblock">
+
+        Add registration
+        <form id="numberPlateForm" method="POST" action="/registrations">
+            <input name="reg-input" type="text" placeholder="Enter number plate here" required="required" pattern="[A-Za-z0-9 ]+" maxlength="10"
+                title="please only enter alphanumeric characters">
+            <button type="submit">Submit</button>
+        </form>
+    </div>
+</div>

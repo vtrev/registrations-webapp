@@ -1,0 +1,21 @@
+{
+  "name": "registrations-app",
+  "version": "1.0.0",
+  "description": "An app that stores and sorts registration numbers",
+  "main": "index.js",
+  "directories": {
+    "test": "test"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "@vtrev",
+  "license": "ISC",
+  "dependencies": {
+    "body-parser": "^1.18.3",
+    "express-flash": "0.0.2",
+    "express-handlebars": "^3.0.0",
+    "express-session": "^1.15.6",
+    "pg": "^7.4.3"
+  }
+}

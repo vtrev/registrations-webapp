@@ -1,0 +1,12 @@
+.center {
+    text-align: center;
+}
+
+nav {
+    height: 100px;
+    background: gray;
+}
+
+.inblock {
+    display: inline-block;
+}
