@@ -26,14 +26,18 @@ const {
 // local pool
 
 const pool = new Pool({
-    user: 'coder',
-    host: '127.0.0.1',
+    user: 'vusi',
+    host: '192.168.0.29',
     database: 'registrations',
     password: '8423',
     port: 5432
 });
+const regInstance = regFacctory(pool);
 
 
+
+
+// Routes
 app.use(session({
     secret: 'Tshimugaramafatha'
 }));
@@ -61,9 +65,18 @@ app.get('/registrations/:plate', function (req, res) {
     res.send(plate);
 })
 
-app.post('/registrations', function (req, res) {
-    console.log(req.body)
-    // res.send
+app.post('/registrations', async function (req, res) {
+    let regEntered = req.body.regEntered;
+    if (await regInstance.validateReg(regEntered) === 'valid') {
+        if (await regInstance.checkMatch(regEntered) === 'mismatched') {
+            let tmpReg = await regInstance.createReg(regEntered);
+            let query = await regInstance.addPlate(tmpReg);
+            console.log(query);
+        } else if (await regInstance.checkMatch(regEntered) === 'matched') {
+            console.log('throw error')
+        };
+    };
+
 })
 
 //FIRE TO THE SERVER  

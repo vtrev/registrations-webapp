@@ -1,11 +1,64 @@
-<div class="row center">
-    <div class="col-12 inblock">
-
-        Add registration
-        <form id="numberPlateForm" method="POST" action="/registrations">
-            <input name="reg-input" type="text" placeholder="Enter number plate here" required="required" pattern="[A-Za-z0-9 ]+" maxlength="10"
-                title="please only enter alphanumeric characters">
-            <button type="submit">Submit</button>
-        </form>
+<body>
+    <div class="row">
+        <div class="col-3"></div>
+        <div class="col-6 center">
+        </div>
+        <div class="col-3"></div>
     </div>
-</div>
+    <div class="row">
+        <div class="col-3"></div>
+
+        <div class="col-6">
+            <form id="numberPlateForm" method="POST" action="/registrations">
+                <input class='center' name="regEntered" id="inputBox" type="console.text" placeholder="Enter number plate here" required="required"
+                    pattern="[A-Za-z0-9 ]+" maxlength="10" title="please only enter alphanumeric characters">
+            </form>
+        </div>
+        <div class="col-3"></div>
+    </div>
+    <div class="row">
+        <div class="col-5"></div>
+        <div class="col-2" id="addBtn">
+            <button id="addButton" type="submit" form="numberPlateForm">
+                <strong>Add</strong>
+            </button>
+
+        </div>
+        <div class="col-5"></div>
+
+    </div>
+
+    <div class="row">
+        <div class="center col 12">
+
+            Filter by town :
+            <select id="townDropD">
+                <option value="alltowns">All Towns</option>
+                <option value="CA">CapeTown</option>
+                <option value="CJ">Paarl</option>
+                <option value="CY">Bellville</option>
+                <option value="CL">Stellenbosch</option>
+
+            </select>
+            <button id='filterButton'>Apply filter </button>
+
+
+        </div>
+
+
+    </div>
+
+
+    <div class="row">
+        <div class="col-3"></div>
+
+        <div class="col-6">
+            <ul id="numberPlates" class=" center numberPlates">
+
+            </ul>
+
+        </div>
+        <div class="col-3"></div>
+
+
+    </div>
