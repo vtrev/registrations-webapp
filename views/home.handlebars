@@ -30,18 +30,21 @@
 
     <div class="row">
         <div class="center col 12">
-
-            Filter by town :
-            <select id="townDropD">
-                <option value="alltowns">All Towns</option>
-                <option value="CA">CapeTown</option>
-                <option value="CJ">Paarl</option>
-                <option value="CY">Bellville</option>
-                <option value="CL">Stellenbosch</option>
-
-            </select>
-            <button id='filterButton'>Apply filter </button>
-
+            <form method="GET" action="/displayPlates">
+                Filter by town :
+                <label>Town</label>
+                <select name="town">
+                    <option value="allTowns">All Towns</option>
+                    <option value="CA">CapeTown</option>
+                    <option value="CY">Bellville</option>
+                    <option value="CW">Worcester</option>
+                    <option value="CL">Stellenbosch</option>
+                    <option value="CAW">George</option>
+                    <option value="CEO">Grabouw</option>
+                    <option value="CFR" Kuilsrivier></option>
+                </select>
+                <button id='filterButton' type="submit">Apply filter </button>
+            </form>
 
         </div>
 
@@ -55,6 +58,9 @@
         <div class="col-6">
             <ul id="numberPlates" class=" center numberPlates">
 
+                {{#each this.regs}}
+                <li>{{this.registration}}</li>
+                {{/each}}
             </ul>
 
         </div>

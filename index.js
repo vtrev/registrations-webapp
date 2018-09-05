@@ -61,9 +61,19 @@ app.get('/', function (req, res) {
 
 
 app.get('/registrations/:plate', function (req, res) {
-    let plate = req.body;
-    res.send(plate);
+    console.log(req.params.plate);
+    // console.log(req.query)
+    // res.send(plate);
 })
+app.get('/displayPlates',
+    async function (req, res) {
+        let town = req.query.town;
+        console.log(town);
+        let result = await regInstance.getPlate(town);
+        res.render('home', {
+            regs: result
+        });
+    })
 
 app.post('/registrations', async function (req, res) {
     let regEntered = req.body.regEntered;

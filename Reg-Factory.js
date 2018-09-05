@@ -40,7 +40,6 @@ module.exports = function RegFactory(pool) {
             const sql = 'SELECT registration FROM registrations WHERE starts_with=$1';
             const params = [town];
             let result = await pool.query(sql, params);
-            // console.log(result.rows)
             return result.rows
         }
 
