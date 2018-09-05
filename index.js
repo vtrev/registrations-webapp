@@ -23,13 +23,12 @@ const {
 //     port: 5432,
 //     ssl: true
 // });
-
-
 // local pool
+
 const pool = new Pool({
     user: 'coder',
     host: '127.0.0.1',
-    database: 'greetings',
+    database: 'registrations',
     password: '8423',
     port: 5432
 });
