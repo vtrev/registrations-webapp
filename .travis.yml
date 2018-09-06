@@ -1,3 +1,15 @@
-language : node_js
+language: node_js
+
+env:
+     - DB=postgresql://postgres@localhost:5432/registrations
 node_js:
-    "8.0.0"
+        - "8.0.0"
+
+before_script:
+  - psql -c 'create database  registrations;' -U postgres
+  - psql -U postgres -d registrations -a -f tables.sql
+
+addons:
+    apt:
+    packages:
+    - postgresql-server-dev-9.2
