@@ -11,25 +11,28 @@
         </div>
     </div>
     <div class="row center inblock">
-        <div class="col-2"></div>
-        <div class="col-8">
-            <form id="numberPlateForm" method="POST" action="/registrations">
+        {{!--
+        <div class="col-2"></div> --}}
+        <div class="col-12">
+            <form class="numberPlateForm" method="POST" action="/registrations">
                 <input class='center .blue-on-hover' name="regEntered" id="inputBox" type="console.text" placeholder="Enter number plate here"
                     required="required" pattern="[A-Za-z0-9 ]+" maxlength="11" title="please only enter alphanumeric characters">
+                <button class=".blue-on-hover" id="addButton" type="submit" form="numberPlateForm">
+                    <strong>Add</strong>
+                </button>
             </form>
 
         </div>
-        <div class="col-2">
+        {{!--
+        <div class="col-2"> --}} {{!--
             <button class=".blue-on-hover" id="addButton" type="submit" form="numberPlateForm">
                 <strong>Add</strong>
-            </button>
+            </button> --}}
         </div>
     </div>
     <div class="row">
         <div class="col-5"></div>
         <div class="col-2 " id="addBtn">
-
-
         </div>
         <div class="col-5"></div>
 
@@ -37,8 +40,9 @@
 
     <div class="row inblock">
         <div class="center col 12">
-            <form method="GET" action="/displayPlates">
-                <label>Filter by Town</label>
+            <form class="form-input" method="GET" action="/displayPlates">
+                <label class="label">Filter by Town</label>
+                <br>
                 <select class="" name="town">
                     <option value="allTowns">All Towns</option>
                     <option value="CA">CapeTown</option>
@@ -53,11 +57,7 @@
             </form>
 
         </div>
-
-
     </div>
-
-
     <div class="row">
         <div class="col-3"></div>
 
@@ -71,6 +71,4 @@
 
         </div>
         <div class="col-3"></div>
-
-
     </div>

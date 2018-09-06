@@ -1,9 +1,35 @@
+@media only screen and (max-width: 490px) {
+    body {
+        /* background-color: lightblue; */
+    }
+
+    #inputBox {
+        margin-right: 0px;
+    }
+
+    #addButton {
+        color: #333447;
+        border: 2px solid darkslategray;
+        width: 150px;
+        height: 50px;
+        background-color: white;
+        position: relative;
+        top: 31px;
+        right: 6px;
+    }
+
+    .form-input {
+        position: relative;
+        left: 8px;
+    }
+}
+
 .center {
     text-align: center;
 }
 
 nav {
-    height: 100px;
+    height: 130px;
     width: 100%;
     color: white;
     background: black;
@@ -45,32 +71,28 @@ input:active {
 
 #inputBox {
     border: 2px solid darkslategray;
-    /* border-radius: 25px; */
-    width: 70%;
+    width: 40%;
     min-width: 300px;
     height: 50px;
     -webkit-transition-duration: 0.4s;
     /* Safari */
     transition-duration: 0.4s;
     text-transform: uppercase;
-}
-
-#inputBox:hover {
-    background-color: darkturquoise;
+    margin-right: 20px;
 }
 
 #addButton {
     color: #333447;
     border: 2px solid darkslategray;
     width: 150px;
-    height: 40px;
+    height: 50px;
     background-color: white;
-    float: left;
-    /* background: #333447; */
-    /* border-radius: 20px; */
 }
 
-#addButton:hover {
+#addButton:hover,
+#inputBox:hover,
+#filterButton:hover,
+select:hover {
     background-color: darkturquoise;
     -webkit-transition-duration: 0.4s;
     /* Safari */
@@ -81,18 +103,9 @@ input:active {
 select {
     color: #333447;
     border: 2px solid #333447;
-    /* border-radius: 25px; */
     width: 105px;
     height: 40px;
     background: white;
-}
-
-#filterButton:hover,
-select:hover {
-    background-color: darkturquoise;
-    -webkit-transition-duration: 0.4s;
-    /* Safari */
-    transition-duration: 0.4s;
 }
 
 ul {
@@ -109,4 +122,37 @@ ul {
 
 .body-start {
     margin-top: 150px;
+}
+
+.form-input {
+    position: relative;
+    right: 50px;
+}
+
+.numberPlateForm {
+    position: relative;
+    left: 20px;
+}
+
+.strip {
+    /* position: fixed; */
+    /* bottom: 0; */
+    height: 5px;
+    width: 100%;
+    background: darkturquoise;
+}
+
+#love::before {
+    content: '\2665';
+}
+
+#love {
+    color: red;
+    font-size: 24px;
+}
+
+footer {
+    position: fixed;
+    bottom: 0;
+    width: 100%;
 }
