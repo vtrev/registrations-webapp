@@ -15,22 +15,22 @@ const {
     Pool
 } = require('pg');
 // Heroku pool
-const pool = new Pool({
-    user: 'wpaqijivkbjxru',
-    host: 'ec2-184-72-247-70.compute-1.amazonaws.com',
-    database: 'd1mbfvltamn5tq',
-    password: '3a5459505d47795bfea9baf1581bc3d14d379e05fc074db84401913ca260fdd1',
-    port: 5432,
-    ssl: true
-});
-// local pool
 // const pool = new Pool({
-//     user: 'coder',
-//     host: '127.0.0.1',
-//     database: 'registrations',
-//     password: '8423',
-//     port: 5432
+//     user: 'wpaqijivkbjxru',
+//     host: 'ec2-184-72-247-70.compute-1.amazonaws.com',
+//     database: 'd1mbfvltamn5tq',
+//     password: '3a5459505d47795bfea9baf1581bc3d14d379e05fc074db84401913ca260fdd1',
+//     port: 5432,
+//     ssl: true
 // });
+// local pool
+const pool = new Pool({
+    user: 'coder',
+    host: '127.0.0.1',
+    database: 'registrations',
+    password: '8423',
+    port: 5432
+});
 const regInstance = regFacctory(pool);
 
 // Routes
@@ -61,9 +61,7 @@ app.get('/', function (req, res) {
 app.get('/displayPlates',
     async function (req, res) {
         let town = req.query.town;
-        console.log(town);
         let result = await regInstance.getPlate(town);
-        console.log(result.length);
         if (result.length == 0) {
             req.flash('info', 'Sorry, no registrations have been stored from this town yet.');
             res.render('home', {

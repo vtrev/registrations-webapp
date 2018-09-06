@@ -6,23 +6,23 @@ const pg = require("pg");
 const Pool = pg.Pool;
 
 // local pool
-// const pool = new Pool({
-//     user: 'coder',
-//     host: '127.0.0.1',
-//     database: 'registrations',
-//     password: '8423',
-//     port: 5432
-// });
+const pool = new Pool({
+    user: 'coder',
+    host: '127.0.0.1',
+    database: 'registrations',
+    password: '8423',
+    port: 5432
+});
 
 // Heroku pool
-const pool = new Pool({
-    user: 'wpaqijivkbjxru',
-    host: 'ec2-184-72-247-70.compute-1.amazonaws.com',
-    database: 'd1mbfvltamn5tq',
-    password: '3a5459505d47795bfea9baf1581bc3d14d379e05fc074db84401913ca260fdd1',
-    port: 5432,
-    ssl: true
-});
+// const pool = new Pool({
+//     user: 'wpaqijivkbjxru',
+//     host: 'ec2-184-72-247-70.compute-1.amazonaws.com',
+//     database: 'd1mbfvltamn5tq',
+//     password: '3a5459505d47795bfea9baf1581bc3d14d379e05fc074db84401913ca260fdd1',
+//     port: 5432,
+//     ssl: true
+// });
 
 const RegInstance = registrations(pool);
 
@@ -92,7 +92,6 @@ describe('Registrations web app', function () {
             registration: regData3.plate
         }]);
         let cawResult = await RegInstance.getPlate('CAW');
-        // console.log(cawResult);
         assert.deepEqual(cawResult, [{
             registration: regData2.plate
         }, {
