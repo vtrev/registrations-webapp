@@ -18,7 +18,7 @@ const Pool = pg.Pool;
 const pool = new Pool({
     user: 'wpaqijivkbjxru',
     host: 'ec2-184-72-247-70.compute-1.amazonaws.com',
-    database: 'dvpi1u6n33sj8',
+    database: 'd1mbfvltamn5tq',
     password: '3a5459505d47795bfea9baf1581bc3d14d379e05fc074db84401913ca260fdd1',
     port: 5432,
     ssl: true
@@ -26,7 +26,7 @@ const pool = new Pool({
 
 const RegInstance = registrations(pool);
 
-describe('Greetings web app', function () {
+describe('Registrations web app', function () {
     beforeEach(async function () {
         await pool.query('DELETE from registrations');
     });
