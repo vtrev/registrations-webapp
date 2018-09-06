@@ -2,12 +2,12 @@ module.exports = function RegFactory(pool) {
 
     let getTown = function (plate) {
         if (plate.charAt(2) === ' ') {
-            let startsWith = plate.substr(0, 2).toUpperCase();
-            return startsWith
+            let startsWith = plate.substr(0, 2);
+            return startsWith.toUpperCase();
         };
         if (plate.charAt(3) === ' ') {
-            let startsWith = plate.substr(0, 3).toUpperCase();
-            return startsWith;
+            let startsWith = plate.substr(0, 3);
+            return startsWith.toUpperCase();
         };
     };
 
@@ -48,8 +48,6 @@ module.exports = function RegFactory(pool) {
     let validateReg = async function (plate) {
         const sql = 'SELECT * FROM towns WHERE starts_with=$1';
         let starts_with = getTown(plate);
-        console.log('starts with')
-        console.log(starts_with);
         const params = [starts_with];
         let result = await pool.query(sql, params);
         if (result.rowCount == 1) {
