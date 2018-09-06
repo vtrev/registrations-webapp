@@ -59,12 +59,13 @@ module.exports = function RegFactory(pool) {
 
     //method to check for duplicates.....NB! Only call this method id the registration passes the validator.
     let checkMatch = async function (plate) {
+        plate = plate.toUpperCase();
         const sql = 'SELECT * FROM registrations WHERE registration =$1';
         const params = [plate];
         let result = await pool.query(sql, params);
         if (result.rowCount > 0) {
             return 'matched'
-        } else {
+        } else if (result.rowCount === 0) {
             return 'mismatched'
         }
 

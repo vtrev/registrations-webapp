@@ -4,7 +4,13 @@
 
 nav {
     height: 100px;
-    background: gray;
+    width: 100%;
+    color: white;
+    background: black;
+    position: fixed;
+    top: 0;
+    text-align: center;
+    z-index: 1;
 }
 
 .inblock {
@@ -17,10 +23,11 @@ nav {
 }
 
 li {
+    color: #333447;
     border: 2px solid black;
     width: 150px;
     height: 30px;
-    border-radius: 10px;
+    border-radius: 5px;
     background-color: silver;
     text-align: center;
     font-size: 19px;
@@ -28,9 +35,9 @@ li {
     display: inline-block;
 }
 
-button,
 input:focus,
 button,
+select,
 input:active {
     outline: none !important;
     box-shadow: none;
@@ -39,7 +46,7 @@ input:active {
 #inputBox {
     border: 2px solid darkslategray;
     /* border-radius: 25px; */
-    width: 85%;
+    width: 70%;
     min-width: 300px;
     height: 50px;
     -webkit-transition-duration: 0.4s;
@@ -53,15 +60,40 @@ input:active {
 }
 
 #addButton {
+    color: #333447;
     border: 2px solid darkslategray;
     width: 150px;
     height: 40px;
     background-color: white;
+    float: left;
     /* background: #333447; */
-    border-radius: 20px;
+    /* border-radius: 20px; */
 }
 
-#filterButton {}
+#addButton:hover {
+    background-color: darkturquoise;
+    -webkit-transition-duration: 0.4s;
+    /* Safari */
+    transition-duration: 0.4s;
+}
+
+#filterButton,
+select {
+    color: #333447;
+    border: 2px solid #333447;
+    /* border-radius: 25px; */
+    width: 105px;
+    height: 40px;
+    background: white;
+}
+
+#filterButton:hover,
+select:hover {
+    background-color: darkturquoise;
+    -webkit-transition-duration: 0.4s;
+    /* Safari */
+    transition-duration: 0.4s;
+}
 
 ul {
     list-style-type: none;
@@ -73,4 +105,8 @@ ul {
 
 .success {
     color: green
+}
+
+.body-start {
+    margin-top: 150px;
 }

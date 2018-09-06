@@ -21,7 +21,7 @@ if (process.env.DATABASE_URL && !local) {
     useSSL = true;
 }
 // which db connection to use
-const connectionString = process.env.DATABASE_URL || 'postgresql://postgres@localhost:5432/registrations';
+const connectionString = process.env.DATABASE_URL || 'postgresql://postgres:pass@localhost:5432/registrations';
 
 const pool = new Pool({
     connectionString,
@@ -51,11 +51,8 @@ app.use(bodyParser.urlencoded({
 // Router
 app.get('/', function (req, res) {
     res.render('home');
-})
-// app.get('/registrations/:plate', function (req, res) {
-// let regEntered = req.params.plate;
-// res.send(regEntered);
-// })
+});
+
 app.get('/displayPlates',
     async function (req, res) {
         let town = req.query.town;
