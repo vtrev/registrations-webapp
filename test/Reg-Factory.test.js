@@ -21,7 +21,7 @@ const Pool = pg.Pool;
 //     useSSL = true;
 // }
 // which db connection to use
-const connectionString = process.env.DATABASE_URL || 'postgresql://postgres:pass@localhost:5432/registrations';
+const connectionString = process.env.DATABASE_URL || 'postgresql://postgres@localhost:5432/registrations';
 
 const pool = new Pool({
     connectionString
