@@ -14,7 +14,7 @@ module.exports = function RegFactory(pool) {
     let createRegData = function (plate) {
         let regData = {};
         regData.town = getTown(plate);
-        regData.plate = plate;
+        regData.plate = plate.toUpperCase();
         return regData
     }
     let addReg = async function (regData) {
