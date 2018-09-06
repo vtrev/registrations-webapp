@@ -6,13 +6,13 @@ const pg = require("pg");
 const Pool = pg.Pool;
 
 // local pool
-// const pool = new Pool({
-//     user: 'coder',
-//     host: '127.0.0.1',
-//     database: 'registrations',
-//     password: '8423',
-//     port: 5432
-// });
+const pool = new Pool({
+    user: 'coder',
+    host: '127.0.0.1',
+    database: 'registrations',
+    password: '8423',
+    port: 5432
+});
 
 // Heroku pool
 const pool = new Pool({
