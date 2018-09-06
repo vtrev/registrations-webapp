@@ -15,17 +15,16 @@ const Pool = pg.Pool;
 // });
 
 
-let useSSL = false;
-let local = process.env.LOCAL || false;
-if (process.env.DATABASE_URL && !local) {
-    useSSL = true;
-}
+// let useSSL = false;
+// let local = process.env.LOCAL || false;
+// if (process.env.DATABASE_URL && !local) {
+//     useSSL = true;
+// }
 // which db connection to use
 const connectionString = process.env.DATABASE_URL || 'postgresql://postgres@localhost:5432/registrations';
 
 const pool = new Pool({
-    connectionString,
-    ssl: useSSL
+    connectionString
 });
 
 
