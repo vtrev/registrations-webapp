@@ -14,15 +14,36 @@ const Pool = pg.Pool;
 //     port: 5432
 // });
 
-// Heroku pool
+
+let useSSL = false;
+let local = process.env.LOCAL || false;
+if (process.env.DATABASE_URL && !local) {
+    useSSL = true;
+}
+// which db connection to use
+const connectionString = process.env.DATABASE_URL || 'postgresql://coder:8423@localhost:5432/registrations';
+
 const pool = new Pool({
-    user: 'wpaqijivkbjxru',
-    host: 'ec2-184-72-247-70.compute-1.amazonaws.com',
-    database: 'd1mbfvltamn5tq',
-    password: '3a5459505d47795bfea9baf1581bc3d14d379e05fc074db84401913ca260fdd1',
-    port: 5432,
-    ssl: true
+    connectionString,
+    ssl: useSSL
 });
+
+
+
+
+
+
+
+
+// Heroku pool
+// const pool = new Pool({
+//     user: 'wpaqijivkbjxru',
+//     host: 'ec2-184-72-247-70.compute-1.amazonaws.com',
+//     database: 'd1mbfvltamn5tq',
+//     password: '3a5459505d47795bfea9baf1581bc3d14d379e05fc074db84401913ca260fdd1',
+//     port: 5432,
+//     ssl: true
+// });
 
 const RegInstance = registrations(pool);
 
