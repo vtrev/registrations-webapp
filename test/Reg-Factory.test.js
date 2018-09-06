@@ -7,8 +7,8 @@ const Pool = pg.Pool;
 
 // local pool
 const pool = new Pool({
-    user: 'vusi',
-    host: '192.168.0.29',
+    user: 'coder',
+    host: '127.0.0.1',
     database: 'registrations',
     password: '8423',
     port: 5432
@@ -126,6 +126,4 @@ describe('Greetings web app', function () {
         assert.equal(result1, 'mismatched');
         assert.equal(result0, 'matched');
     });
-
-
 });

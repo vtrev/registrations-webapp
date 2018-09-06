@@ -26,16 +26,13 @@ const {
 // local pool
 
 const pool = new Pool({
-    user: 'vusi',
-    host: '192.168.0.29',
+    user: 'coder',
+    host: '127.0.0.1',
     database: 'registrations',
     password: '8423',
     port: 5432
 });
 const regInstance = regFacctory(pool);
-
-
-
 
 // Routes
 app.use(session({
@@ -58,22 +55,27 @@ app.use(bodyParser.urlencoded({
 app.get('/', function (req, res) {
     res.render('home');
 })
-
-
-app.get('/registrations/:plate', function (req, res) {
-    console.log(req.params.plate);
-    // console.log(req.query)
-    // res.send(plate);
-})
+// app.get('/registrations/:plate', function (req, res) {
+// let regEntered = req.params.plate;
+// res.send(regEntered);
+// })
 app.get('/displayPlates',
     async function (req, res) {
         let town = req.query.town;
         console.log(town);
         let result = await regInstance.getPlate(town);
-        res.render('home', {
-            regs: result
-        });
-    })
+        console.log(result.length);
+        if (result.length == 0) {
+            req.flash('info', 'Sorry, no registrations have been stored from this town yet.');
+            res.render('home', {
+                status: 'warning'
+            });
+        } else {
+            res.render('home', {
+                regs: result
+            })
+        };
+    });
 
 app.post('/registrations', async function (req, res) {
     let regEntered = req.body.regEntered;
@@ -81,11 +83,23 @@ app.post('/registrations', async function (req, res) {
         if (await regInstance.checkMatch(regEntered) === 'mismatched') {
             let tmpReg = await regInstance.createReg(regEntered);
             let query = await regInstance.addPlate(tmpReg);
-            console.log(query);
+            req.flash('info', query + ' : ' + regEntered);
+            res.render('home', {
+                status: 'success'
+            })
         } else if (await regInstance.checkMatch(regEntered) === 'matched') {
-            console.log('throw error')
+            req.flash('info', 'Oops! Regisatration number: ' + regEntered + ' has already been stored in the database.');
+            res.render('home', {
+                status: 'warning'
+            });
         };
     };
+    if (await regInstance.validateReg(regEntered) === 'invalid') {
+        req.flash('info', 'Oops! Regisatration number: ' + regEntered + ' does not seem to be valid,please enter registrations from the available towns on the menu');
+        res.render('home', {
+            status: 'warning'
+        })
+    }
 
 })
 

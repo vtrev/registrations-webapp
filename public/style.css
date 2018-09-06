@@ -65,3 +65,11 @@ input:active {
 ul {
     list-style-type: none;
 }
+
+.warning {
+    color: red
+}
+
+.success {
+    color: green
+}

@@ -5,11 +5,15 @@
         </div>
         <div class="col-3"></div>
     </div>
+    <div class="row center">
+        <div class="col-12">
+            <h4 class={{status}}>{{messages.info}}</h4>
+        </div>
+    </div>
     <div class="row">
         <div class="col-3"></div>
-
         <div class="col-6">
-            <form id="numberPlateForm" method="POST" action="/registrations">
+            <form id="numberPlateForm" method="POST" action="/registrations:plate">
                 <input class='center' name="regEntered" id="inputBox" type="console.text" placeholder="Enter number plate here" required="required"
                     pattern="[A-Za-z0-9 ]+" maxlength="10" title="please only enter alphanumeric characters">
             </form>
