@@ -14,7 +14,7 @@ const Pool = pg.Pool;
 //     port: 5432
 // });
 
-// // // Heroku pool
+// Heroku pool
 const pool = new Pool({
     user: 'wpaqijivkbjxru',
     host: 'ec2-184-72-247-70.compute-1.amazonaws.com',
