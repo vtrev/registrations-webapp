@@ -17,3 +17,4 @@ INSERT INTO towns (starts_with,town) values ('CL','Stellenbosch');
 INSERT INTO towns (starts_with,town) values ('CAW','George');
 INSERT INTO towns (starts_with,town) values ('CEO','Grabouw');
 INSERT INTO towns (starts_with,town) values ('CFR','Kuilsrivier');
+--END OF QUERY-- 
