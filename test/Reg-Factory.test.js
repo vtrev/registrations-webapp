@@ -1,18 +1,18 @@
 'use strict'
 
 const assert = require('assert');
-const registrations = require('../Reg-Factory');
+const Registrations = require('../Reg-Factory');
 const pg = require("pg");
 const Pool = pg.Pool;
 
 
-const connectionString = process.env.DATABASE_URL || 'postgresql://postgres@localhost:5432/registrations';
+const connectionString = process.env.DATABASE_URL || 'postgresql://postgres:pass@localhost:5432/registrations';
 
 const pool = new Pool({
     connectionString
 });
 
-const RegInstance = registrations(pool);
+const regInstance = Registrations(pool);
 
 describe('Registrations web app', function () {
     beforeEach(async function () {
@@ -21,15 +21,15 @@ describe('Registrations web app', function () {
 
     // Testing method that handles 2 or 3 characters a registration can start with
     it('Should return the first characters of a registration that detemine which town the car is from', async function () {
-        let result0 = await RegInstance.getTown('CAW 12345');
-        let result1 = await RegInstance.getTown('CA 12345');
+        let result0 = await regInstance.getTown('CAW 12345');
+        let result1 = await regInstance.getTown('CA 12345');
         assert.equal(result0, 'CAW');
         assert.equal(result1, 'CA');
     });
 
     // method that creates the registration data to be used to insert the registration into the database
     it('Given a registration number string, it should return an object with the town identifying characters and the plate', async function () {
-        let result = await RegInstance.createReg('CY 454 696');
+        let result = await regInstance.createReg('CY 454 696');
         assert.deepEqual(result, {
             plate: 'CY 454 696',
             town: 2
@@ -41,7 +41,7 @@ describe('Registrations web app', function () {
             plate: 'CA 56565',
             town: 1
         };
-        let result = await RegInstance.addPlate(regData);
+        let result = await regInstance.addPlate(regData);
         assert.equal(result, 'Registration was added successfully');
     });
     // method that gets the registrations from the database
@@ -64,12 +64,12 @@ describe('Registrations web app', function () {
             town: 5
         };
 
-        await RegInstance.addPlate(regData0);
-        await RegInstance.addPlate(regData1);
-        await RegInstance.addPlate(regData2);
-        await RegInstance.addPlate(regData3);
+        await regInstance.addPlate(regData0);
+        await regInstance.addPlate(regData1);
+        await regInstance.addPlate(regData2);
+        await regInstance.addPlate(regData3);
 
-        let result = await RegInstance.getPlate('allTowns');
+        let result = await regInstance.getPlate('allTowns');
         assert.deepEqual(result, [{
             registration: regData0.plate
         }, {
@@ -79,7 +79,7 @@ describe('Registrations web app', function () {
         }, {
             registration: regData3.plate
         }]);
-        let cawResult = await RegInstance.getPlate('CAW');
+        let cawResult = await regInstance.getPlate('CAW');
         assert.deepEqual(cawResult, [{
             registration: regData2.plate
         }, {
@@ -90,10 +90,10 @@ describe('Registrations web app', function () {
     })
     // testing the method that validates number plates
     it('Should return valid if the registration number that is being entered is from one of the available towns and return invalid if ot is not the case', async function () {
-        let result0 = await RegInstance.validateReg('CAW 12345');
-        let result1 = await RegInstance.validateReg('DFD 65421');
-        let result2 = await RegInstance.validateReg('CA 12345');
-        let result3 = await RegInstance.validateReg('GP skoro');
+        let result0 = await regInstance.validateReg('CAW 12345');
+        let result1 = await regInstance.validateReg('DFD 65421');
+        let result2 = await regInstance.validateReg('CA 12345');
+        let result3 = await regInstance.validateReg('GP skoro');
         assert.equal(result0, 'valid');
         assert.equal(result1, 'invalid');
         assert.equal(result2, 'valid');
@@ -106,10 +106,10 @@ describe('Registrations web app', function () {
             plate: 'CA 56565',
             town: 1
         };
-        await RegInstance.addPlate(regData0);
+        await regInstance.addPlate(regData0);
 
-        let result0 = await RegInstance.checkMatch('CA 56565');
-        let result1 = await RegInstance.checkMatch('CAW 45455');
+        let result0 = await regInstance.checkMatch('CA 56565');
+        let result1 = await regInstance.checkMatch('CAW 45455');
         assert.equal(result1, 'mismatched');
         assert.equal(result0, 'matched');
     });
