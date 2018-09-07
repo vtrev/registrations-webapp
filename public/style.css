@@ -33,6 +33,7 @@ li {
     font-size: 19px;
     margin: 10px 10px;
     display: inline-block;
+    float: left;
 }
 
 input:focus,
