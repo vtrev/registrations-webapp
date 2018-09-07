@@ -3,7 +3,7 @@ language: node_js
 services:
   -postresql 
 env:
-     - DB=registrations
+     - DATABASE_URL=postgresql://postgres@localhost:5432/registrations
 node_js:
         - "8.0.0"
 
