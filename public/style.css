@@ -184,6 +184,10 @@ form {
         position: relative;
         left: 17px;
     }
+
+    .body-start {
+        margin-top: 80px;
+    }
 }
 
 a {
