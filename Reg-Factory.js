@@ -11,17 +11,19 @@ module.exports = function RegFactory(pool) {
         };
     };
 
-    let createRegData = function (plate) {
+    let createRegData = async function (plate) {
         let regData = {};
-        regData.town = getTown(plate);
+        let regTown = getTown(plate);
+        let townIdQuery = await pool.query('SELECT id FROM towns WHERE starts_with=$1', [regTown]);
+        regData.town = townIdQuery.rows[0].id;
         regData.plate = plate.toUpperCase();
         return regData
     }
     let addReg = async function (regData) {
         let regNoToENter = regData.plate;
-        let town = regData.town;
-        let sql = 'INSERT INTO registrations(starts_with,registration) values($1,$2)';
-        let params = [town, regNoToENter];
+        let town_id = regData.town;
+        let sql = 'INSERT INTO registrations(town_id,registration) values($1,$2)';
+        let params = [town_id, regNoToENter];
         // add some try and throw situation on this block
         let result = await pool.query(sql, params);
         if (result.rowCount == 1) {
@@ -37,10 +39,14 @@ module.exports = function RegFactory(pool) {
             let result = await pool.query(sql);
             return result.rows;
         } else {
-            const sql = 'SELECT registration FROM registrations WHERE starts_with=$1';
-            const params = [town];
-            let result = await pool.query(sql, params);
-            return result.rows
+            const sql0 = 'SELECT id FROM towns WHERE starts_with=$1';
+            const params0 = [town];
+            let result0 = await pool.query(sql0, params0);
+            let regId = result0.rows[0].id;
+            const params1 = [regId]
+            const sql1 = 'SELECT registration FROM registrations WHERE town_id=$1';
+            let result1 = await pool.query(sql1, params1);
+            return result1.rows;
         }
 
     }
@@ -57,7 +63,7 @@ module.exports = function RegFactory(pool) {
         };
     };
 
-    //method to check for duplicates.....NB! Only call this method id the registration passes the validator.
+    //method to check for duplicates.....NB! Only call this method if the registration passes the validator.
     let checkMatch = async function (plate) {
         plate = plate.toUpperCase();
         const sql = 'SELECT * FROM registrations WHERE registration =$1';

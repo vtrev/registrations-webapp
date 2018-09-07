@@ -32,14 +32,14 @@ describe('Registrations web app', function () {
         let result = await RegInstance.createReg('CY 454 696');
         assert.deepEqual(result, {
             plate: 'CY 454 696',
-            town: 'CY'
+            town: 2
         })
     });
     // method that adds registrations into the database
     it('Given an object with registrationData,it should insert the registration into the database', async function () {
         let regData = {
             plate: 'CA 56565',
-            town: 'CA'
+            town: 1
         };
         let result = await RegInstance.addPlate(regData);
         assert.equal(result, 'Registration was added successfully');
@@ -48,20 +48,20 @@ describe('Registrations web app', function () {
     it('Shuold return back a list of registrations from the specified town', async function () {
         let regData0 = {
             plate: 'CA 56565',
-            town: 'CA'
+            town: 1
         };
 
         let regData1 = {
             plate: 'CY 1235',
-            town: 'CY'
+            town: 2
         };
         let regData2 = {
             plate: 'CAW 9995',
-            town: 'CAW'
+            town: 5
         };
         let regData3 = {
             plate: 'CAW 66565',
-            town: 'CAW'
+            town: 5
         };
 
         await RegInstance.addPlate(regData0);
@@ -104,7 +104,7 @@ describe('Registrations web app', function () {
 
         let regData0 = {
             plate: 'CA 56565',
-            town: 'CA'
+            town: 1
         };
         await RegInstance.addPlate(regData0);
 
