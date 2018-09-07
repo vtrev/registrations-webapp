@@ -11,8 +11,7 @@
         </div>
     </div>
     <div class="row center inblock">
-        {{!--
-        <div class="col-2"></div> --}}
+
         <div class="col-12">
             <form class="numberPlateForm" method="POST" action="/registrations">
                 <input class='center .blue-on-hover' name="regEntered" id="inputBox" type="console.text" placeholder="Enter number plate here"
@@ -23,12 +22,8 @@
             </form>
 
         </div>
-        {{!--
-        <div class="col-2"> --}} {{!--
-            <button class=".blue-on-hover" id="addButton" type="submit" form="numberPlateForm">
-                <strong>Add</strong>
-            </button> --}}
-        </div>
+
+    </div>
     </div>
     <div class="row">
         <div class="col-5"></div>
@@ -61,8 +56,8 @@
     <div class="row">
         <div class="col-3"></div>
 
-        <div class="col-6">
-            <ul id="numberPlates" class=" center numberPlates">
+        <div class="col-6 plates-area center">
+            <ul id="numberPlates" class="">
 
                 {{#each this.regs}}
                 <li>{{this.registration}}</li>
