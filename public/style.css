@@ -61,6 +61,7 @@ input:active {
     width: 150px;
     height: 50px;
     background-color: white;
+    border-radius: 9px;
 }
 
 #addButton:hover,
@@ -80,6 +81,7 @@ select {
     width: 105px;
     height: 40px;
     background: white;
+    border-radius: 9px;
 }
 
 ul {
@@ -142,7 +144,7 @@ form {
     /* margin-top: 80px; */
     /* border: 1px solid black; */
     width: 100%;
-    height: 200px;
+    height: 40%;
     /* matcth the height with the card height after making card */
     overflow: auto;
 }
@@ -170,6 +172,7 @@ form {
         position: relative;
         top: 31px;
         right: 6px;
+        border-radius: 25px;
     }
 
     .form-input {
@@ -181,4 +184,16 @@ form {
         position: relative;
         left: 17px;
     }
+}
+
+a {
+    text-decoration: none;
+    color: white;
+}
+
+select option {
+    background: white;
+    font-size: 16px;
+    border: none;
+    /* padding: 10px !important; */
 }

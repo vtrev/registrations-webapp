@@ -21,7 +21,7 @@ if (process.env.DATABASE_URL && !local) {
     useSSL = true;
 }
 // which db connection to use
-const connectionString = process.env.DATABASE_URL || 'postgresql://postgres:pass@localhost:5432/registrations';
+const connectionString = process.env.DATABASE_URL || 'postgresql://postgres@localhost:5432/registrations';
 
 const pool = new Pool({
     connectionString,
@@ -49,8 +49,11 @@ app.use(bodyParser.urlencoded({
 }));
 
 // Router
-app.get('/', function (req, res) {
-    res.render('home');
+app.get('/', async function (req, res) {
+    let result = await regInstance.getPlate('allTowns');
+    res.render('home', {
+        regs: result
+    });
 });
 
 app.get('/displayPlates',
@@ -75,9 +78,11 @@ app.post('/registrations', async function (req, res) {
         if (await regInstance.checkMatch(regEntered) === 'mismatched') {
             let tmpReg = await regInstance.createReg(regEntered);
             let query = await regInstance.addPlate(tmpReg);
+            let result = await regInstance.getPlate('allTowns');
             req.flash('info', query + ' : ' + regEntered);
             res.render('home', {
-                status: 'success'
+                status: 'success',
+                regs: result
             })
         } else if (await regInstance.checkMatch(regEntered) === 'matched') {
             req.flash('info', 'Oops! Regisatration number: ' + regEntered + ' has already been stored in the database.');
