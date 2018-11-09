@@ -3,7 +3,7 @@
 }
 
 nav {
-    height: 130px;
+    height: 150px;
     width: 100%;
     color: white;
     background: black;
@@ -129,9 +129,6 @@ ul {
 }
 
 footer {
-    position: fixed;
-    bottom: 0;
-    width: 100%;
     z-index: 1;
     background: white;
 }
@@ -154,8 +151,13 @@ form {
     display: none;
 }
 
-/* Media queries @ the end */
+/* Media queries*/
 @media only screen and (max-width: 490px) {
+    .plates-area {
+        position: relative;
+        right: 13px;
+    }
+
     body {
         /* background-color: lightblue; */
     }
@@ -201,4 +203,11 @@ select option {
     font-size: 16px;
     border: none;
     /* padding: 10px !important; */
+}
+
+@media only screen and (max-width: 360px) {
+    .plates-area {
+        position: relative;
+        left: 50px;
+    }
 }
